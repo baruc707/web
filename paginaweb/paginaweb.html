@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script>
+        let cart = [];
+
+        function addToCart(Balon clase mundial) {
+            cart.push(Balon clase mundial);
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartCount = document.getElementById('cartCount');
+            cartCount.textContent = `${cart.length} productos`;
+        }
+
+        function showCart() {
+            const cartItems = document.getElementById('cartItems');
+            cartItems.innerHTML = '';
+            cart.forEach((product, index) => {
+                const li = document.createElement('li');
+                li.textContent = product;
+                const removeBtn = document.createElement('button');
+                removeBtn.textContent = 'Eliminar';
+                removeBtn.classList.add('remove-btn');
+                removeBtn.onclick = function() {
+                    removeFromCart(index);
+                };
+                li.appendChild(removeBtn);
+                cartItems.appendChild(li);
+            });
+            document.getElementById('cartModal').style.display = 'flex';
+        }
+
+        function closeCart() {
+            document.getElementById('cartModal').style.display = 'none';
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCart();
+            showCart();
+        }
+
+        function filterProducts() {
+            const filter = document.getElementById('priceFilter').value;
+            const products = document.querySelectorAll('.product');
+
+            products.forEach(product => {
+                if (filter === 'todos' || product.dataset.price === filter) {
+                    product.style.display = 'block';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        }
+    </script>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Pagina sencilla</title> 
+
+	
+	<link rel="stylesheet" type="text/css" href="diseño.css">
+
+
+
+</head>
+<body> 
+
+	<div style="text-align: center;" >
+		<h1>Baloncenter</h1>
+		<img src="file:///C:/Users/100034697/Downloads/Logobc.jpg.png">
+	</div>
+
+	<nav>
+		<ul>
+			<li><a href="file:///C:/xampp/htdocs/paginaweb/INICIO.html">Iniciar Sesión</a></li>
+			<li><a href="">Inicio</a></li>
+			<li><a href="file:///C:/xampp/htdocs/paginaweb/paginabalongamabaja.html">balon gama baja</a></li>
+			<li><a href="file:///C:/xampp/htdocs/paginaweb/paginabalongamamedia.html">balon gama media</a></li>
+			<li><a href="file:///C:/xampp/htdocs/paginaweb/paginabalongamamundial.html">balon clase mundial</a></li>
+			
+			
+			</ul>
+	</nav>
+<nav class="carrito">
+    <button id="cart-button" onclick="toggleCartMenu()">Carrito</button>
+
+    <div id="cart-menu">
+        <h4>Carrito de Compras</h4>
+        <div id="cart-items">
+            <!-- Los artículos del carrito se agregarán aquí -->
+        </div>
+        <p>Total: $<span id="cart-total">0.00</span></p>
+    </div>
+</nav>
+	<div class="contenido">
+		<div class="articulo">
+			<div>
+				<h2>balon economico</h2>
+				<p>El balon Voit Balón de Fútbol Soccer No.5 Zonda S100 es el balon mas ajustado a su billetera con un 
+				Peso	0.75 kg, Dimensiones	32 × 18 × 12 cm y con Colores	Amarillo Fluorescente, Anaranjado Fluorescente, Blanco, Verde Fluorescente </p>
+				<img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQOUoEM1PsM231adrRf2pmQzPY2omJs59RzXciw_qTmqPp_D2y0Q1NCz0L0RFggnobLZGpDJugXQaV5mh2etJl9S9nhxDUG-n8iQdLofIs05A23xBygZOCFWPfEutibQ47GtSu6u1fUG-s&usqp=CAc">
+				<p> precio $ 259.00</p>
+				<div class="container">
+            <div class="image-container">
+                <div class="image" data-product-id="1" data-product-name=" balon Voit " data-product-price="259.00">
+                    <div class="button-container">
+                        <button class="button" onclick="addToCart(1)">Agregar al carrito</button>
+                    </div>
+                </div>
+			</div>
+			<div>
+				<h2>balon medio</h2>
+				<p>Tecnología Nike Aerowsculpt emplea ranuras moldeadas que interrumpen la ventilación sobre el balón para reducir el arrastre y ofrecer un vuelo más estable. Cubierta texturizada para mejorar el toque y el agarre. Cámara de aire de goma reforzada para mantener la presión del aire y la forma.</p>
+				<img src="file:///C:/Users/100034697/OneDrive/Escritorio/descarga.jpg">
+				<p> precio $ 699.00</p>
+				<div class="container">
+            <div class="image-container">
+                <div class="image" data-product-id="2" data-product-name="Nike Aerowsculpt " data-product-price="699.00">
+                    <div class="button-container">
+                        <button class="button" onclick="addToCart(2)">Agregar al carrito</button>
+                    </div>
+                </div>
+			</div>
+			
+			<div>
+				<h2>Balon clase mundial</h2>
+				<p>Al Rihla: composición del balón del Mundial de Qatar 2022
+SPEEDSHELL: un cuero de poliuretano texturizado con una novedosa forma con 20 paneles que mejora la precisión, la estabilidad y la rotación en el aire del balón gracias a macro y microtexturas, así como al contrarrelieve de la superficie.</p>
+				<img src="file:///C:/Users/100034697/OneDrive/Escritorio/descarga%20(1).jpg">
+					<p> precion $ 4,082.00</p>
+	<div class="container">
+            <div class="image-container">
+                <div class="image" data-product-id="3" data-product-name="Al Rihla" data-product-price="4082">
+                    <div class="button-container">
+                        <button class="button" onclick="addToCart(3)">Agregar al carrito</button>
+                    </div>
+                </div>
+			</div>
+			<script>
+    let cart = {};
+
+    function addToCart(productId) {
+        const product = document.querySelector(`[data-product-id="${productId}"]`);
+        const productName = product.getAttribute("data-product-name");
+        const productPrice = parseFloat(product.getAttribute("data-product-price"));
+
+        if (!cart[productId]) {
+            cart[productId] = {
+                name: productName,
+                price: productPrice,
+                quantity: 1
+            };
+        } else {
+            cart[productId].quantity += 1;
+        }
+
+        updateCart();
+    }
+
+    function updateCart() {
+        const cartItems = document.getElementById("cart-items");
+        cartItems.innerHTML = "";
+
+        let total = 0;
+        for (const productId in cart) {
+            const item = cart[productId];
+            const itemElement = document.createElement("div");
+            itemElement.classList.add("cart-item");
+
+            itemElement.innerHTML = `
+                ${item.name} x ${item.quantity}
+                <button onclick="removeFromCart('${productId}')">Eliminar</button>
+            `;
+
+            cartItems.appendChild(itemElement);
+
+            total += item.price * item.quantity;
+        }
+
+        document.getElementById("cart-total").innerText = total.toFixed(2);
+    }
+
+    function removeFromCart(productId) {
+        delete cart[productId];
+        updateCart();
+    }
+
+    function toggleCartMenu() {
+        const cartMenu = document.getElementById("cart-menu");
+        const isVisible = cartMenu.style.display === "block";
+
+        cartMenu.style.display = isVisible ? "none" : "block";
+    }
+</script>
+</div>
+
+
+		<div class="secundario">
+			<p>SUCURSALES
+                <br><br>
+			Contamos con 123 sucursales en mexico 
+			y 3,500 sucursales alrededor de america
+			donde la sucursal general se encuentra en ciudad de mexico,
+			tenemos un plan de desplasamiento a europa para 2059
+			donde la sucursal general sera en monaco italia</p>
+
+
+		</div>
+
+
+	</div>
+
+	<div class="piedepagina">
+		<p> baloncenter es una empresa multinacional mexicana dedicada al diseño, desarrollo, fabricación y comercialización de balones de futbol de la mejor calidad asi como precios variados dependiendo de las necesidades del cliente esta empresa fue fundada en 2039 por el ing.Emiliano Baruc Sanchez Estrada. <br>  CONTACTOS: Numero telefonico +52 663 152 8077. <br>
+		 Correo: sanchezbaruc255@gmail.com</p>
+	</div>
+
+</body>
+</html>
